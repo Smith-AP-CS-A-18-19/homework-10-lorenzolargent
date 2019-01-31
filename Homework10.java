@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 
 public class Homework10 {
+	private int[][] arr;
+	private int row;
+	private int col;
 
 	/* Finish the constructor and create any necessary instance
 	 * variables. The constructor should create and save a
@@ -8,7 +11,9 @@ public class Homework10 {
 	 * columns
 	 */
 	public Homework10(int rows, int cols) {
-
+arr = new int[rows][cols];
+row = rows;
+col =cols;
 	}
 
 	/* Fill the stored array with increasing values. The
@@ -17,13 +22,24 @@ public class Homework10 {
 	 * row major order. Return the filled array
 	 */
 	public int[][] problem1(int n) {
-
+			int num = n;
+			for (int i = 0; i < row; i++) {
+				for (int j = 0; j < col; j++) {
+					arr[i][j] = num;
+					num++;
+				}
+			}
+			return arr;
 	}
 
 	/* Return row r of the stored array
 	 */
 	public int[] problem2(int r) {
-
+		int[] arr1 = new int[col];
+				for (int i = 0; i < col; i++) {
+					arr1[i] = arr[r][i];
+				}
+				return arr1;
 	}
 
 	/* Find and return the sum of the indicated cell and its
@@ -32,21 +48,56 @@ public class Homework10 {
 	 * or more neighbors
 	 */
 	public int problem3(int r, int c) {
-
+				int north;
+				int south;
+				int east;
+				int west;
+				if ((c - 1) < 0) {
+					east = 0;
+				} else {
+					east = arr[r][c - 1];
+				}
+				if ((r - 1) < 0) {
+					north = 0;
+				} else {
+					north = arr[r - 1][c];
+				}
+				if ((r + 1) >= arr.length) {
+					south = 0;
+				} else {
+					south = arr[r + 1][c];
+				}
+				if ((c + 1) >= arr[0].length) {
+					west = 0;
+				} else {
+					west = arr[r][c + 1];
+				}
+				int cell = arr[r][c];
+				int sum = north + south + east + west + cell;
+				return sum;
 	}
 
 	/* Create and return an ArrayList that contains the
 	 * elements from the indicated column
 	 */
 	public ArrayList<Integer> problem4(int c) {
-
+		ArrayList<Integer> arra = new ArrayList<Integer>();
+				for (int i = 0; i < arr.length; i++) {
+					int num = arr[i][c];
+					arra.add(num);
+				}
+				return arra;
 	}
 
 	/* Calculate and return the sum of the integers in
 	 * the supplied ArrayList
 	 */
 	public int problem5(ArrayList<Integer> aList) {
-
+		int s = 0;
+		for (int i : aList) {
+			s += i;
+		}
+		return s;
 	}
 
 	public static void main(String[] args) {
